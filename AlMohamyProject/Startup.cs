@@ -1,6 +1,6 @@
 
 using BL;
-using EibtekSystemProject.Models;
+using AlMohamyProject.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -13,6 +13,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EmailService;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AlMohamyProject
 {
@@ -24,10 +26,15 @@ namespace AlMohamyProject
         }
 
         public IConfiguration Configuration { get; }
-
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var emailConfig = Configuration
+         .GetSection("EmailConfiguration")
+         .Get<EmailConfiguration>();
+            services.AddSingleton(emailConfig);
+            services.AddScoped<IEmailSender, EmailSender>();
             services.AddAuthentication()
             .AddGoogle(options =>
             {
@@ -44,7 +51,13 @@ namespace AlMohamyProject
                 options.AppId = "1387677424973135";
                 options.AppSecret = "de6fc7e479121219c97a2e079eee1b3e";
             });
+            services.AddScoped<AboutAppService, ClsAboutApp>();
+            services.AddScoped<ApprovedOfficeService, ClsApprovedOffice>();
+            services.AddScoped<ChargeService, ClsCharge>();
+            services.AddScoped<ConsultingEstablishService, ClsConsultingEstablish>();
             services.AddControllersWithViews();
+            services.AddMvc().AddSessionStateTempDataProvider();
+            services.AddSession();
             services.AddDbContext<AlMohamyDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
@@ -82,13 +95,20 @@ namespace AlMohamyProject
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseCookiePolicy();
+            app.UseCors(MyAllowSpecificOrigins);
             app.UseRouting();
-
+            app.UseSession();
+            app.UseAuthentication();
             app.UseAuthorization();
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+
+              name: "areas",
+              pattern: "{area:exists}/{controller=Home}/{action=Index}");
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

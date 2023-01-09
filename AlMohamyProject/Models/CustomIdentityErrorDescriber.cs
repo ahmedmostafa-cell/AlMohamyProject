@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using Microsoft.Extensions.Localization;
 
-namespace EibtekSystemProject.Models
+namespace AlMohamyProject.Models
 {
     public class CustomIdentityErrorDescriber : IdentityErrorDescriber
     {
