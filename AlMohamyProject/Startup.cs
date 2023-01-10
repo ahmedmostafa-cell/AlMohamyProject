@@ -55,6 +55,14 @@ namespace AlMohamyProject
             services.AddScoped<ApprovedOfficeService, ClsApprovedOffice>();
             services.AddScoped<ChargeService, ClsCharge>();
             services.AddScoped<ConsultingEstablishService, ClsConsultingEstablish>();
+            services.AddScoped<ConsultingTypeService, ClsConsultingType>();
+            services.AddScoped<DocumentationOfContractService, ClsDocumentationOfContract>();
+            services.AddScoped<EvaluationService, ClsEvaluation>();
+            services.AddScoped<MainConsultingService, ClsMainConsulting>();
+            services.AddScoped<NotificationService, ClsNotification>();
+            services.AddScoped<OfferService, ClsOffer>();
+            services.AddScoped<PoliciesAndPrivacyService, ClsPoliciesAndPrivacy>();
+            services.AddScoped<PromocodeService, ClsPromocode>();
             services.AddControllersWithViews();
             services.AddMvc().AddSessionStateTempDataProvider();
             services.AddSession();
