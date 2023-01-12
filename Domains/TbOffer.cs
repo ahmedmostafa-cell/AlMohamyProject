@@ -22,9 +22,9 @@ namespace Domains
         public string OfferStatus { get; set; }
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }
-        public string CreatedDate { get; set; }
-        public string UpdatedDate { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public DateTime? UpdatedDate { get; set; }
         public string Notes { get; set; }
-        public string CurrentState { get; set; }
+        public int? CurrentState { get; set; }
     }
 }

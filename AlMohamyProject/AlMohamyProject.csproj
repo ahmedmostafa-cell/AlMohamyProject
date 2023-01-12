@@ -24,4 +24,8 @@
     <ProjectReference Include="..\EmailServices\EmailServices.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Admin\Views\AboutApp\" />
+  </ItemGroup>
+
 </Project>

@@ -33,10 +33,27 @@ namespace AlMohamyProject.Models
 
         public IEnumerable<ApplicationUser> lstUsers { get; set; }
 
-      
+        public IEnumerable<TbMainConsulting> lstMainConsultings { get; set; }
+
+        public IEnumerable<TbAboutApp> lstAboutApp { get; set; }
+
+        public IEnumerable<TbApprovedOffice> lstApprovedOffices { get; set; }
+
+        public IEnumerable<TbCharge> lstCharges { get; set; }
 
 
-       
+        public IEnumerable<TbComplainsAndSuggestion> lstComplainsAndSuggestions { get; set; }
+
+
+        public IEnumerable<TbConsultingEstablish> lstConsultingEstablishs { get; set; }
+
+
+        public IEnumerable<TbConsultingType> lstConsultingTypes { get; set; }
+
+
+
+
+
 
 
 

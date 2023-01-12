@@ -715,7 +715,8 @@
 
 
 
-
+@inject Microsoft.AspNetCore.Identity.SignInManager<BL.ApplicationUser> signInManager
+@inject Microsoft.AspNetCore.Identity.UserManager<BL.ApplicationUser> userManager
 
 <!DOCTYPE html>
 <html>
@@ -749,8 +750,10 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <!-- Bootstrap 4 RTL -->
   <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" crossorigin="anonymous" />
   <!-- Custom style for RTL -->
     <link rel="stylesheet" href="~/Admin/dist/css/custom.css">
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -763,15 +766,15 @@
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Home</a>
+        <a href="/Admin/Home/Index" class="nav-link">Home</a>
       </li>
-      <li class="nav-item d-none d-sm-inline-block">
+     @* <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
-      </li>
+      </li>*@
     </ul>
 
     <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
+   @* <form class="form-inline ml-3">
       <div class="input-group input-group-sm">
         <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
         <div class="input-group-append">
@@ -780,12 +783,12 @@
           </button>
         </div>
       </div>
-    </form>
+    </form>*@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav mr-auto-navbav">
       <!-- Messages Dropdown Menu -->
-      <li class="nav-item dropdown">
+     @* <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-comments"></i>
           <span class="badge badge-danger navbar-badge">3</span>
@@ -841,9 +844,9 @@
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
         </div>
-      </li>
+      </li>*@
       <!-- Notifications Dropdown Menu -->
-      <li class="nav-item dropdown">
+     @* <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-bell"></i>
           <span class="badge badge-warning navbar-badge">15</span>
@@ -868,7 +871,7 @@
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
-      </li>
+      </li>*@
       <li class="nav-item">
         <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#">
           <i class="fas fa-th-large"></i>
@@ -881,48 +884,41 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="/Admin/Home/Index" class="brand-link">
       <img src="~/Admin/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <span class="brand-text font-weight-light">لوحة تحكم التطبيق</span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
+      @*  <div class="image">
           <img src="~/Admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-        </div>
+        </div>*@
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+                        <a style="font-size:smaller; color:white" class="d-block">@userManager.GetUserAsync(User).Result.FirstName</a>
         </div>
       </div>
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <ul id="main-menu-navigation" class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Dashboard
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="./index.html" class="nav-link active">
+
+                        <li class="nav-header">الاستشارات</li>
+              <li class=" nav-item">
+                  <a  href="/Admin/MainConsulting/Index" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v1</p>
+                  <p> عرض الاستشارات الرئيسية</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="./index2.html" class="nav-link">
+              <li class=" nav-item">
+                 <a href="/Admin/MainConsulting/Form" class="nav-link ">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v2</p>
+                  <p>اضف الاستشارات الرئيسية</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -931,8 +927,7 @@
                   <p>Dashboard v3</p>
                 </a>
               </li>
-            </ul>
-          </li>
+         
           <li class="nav-item">
             <a href="pages/widgets.html" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
@@ -1342,6 +1337,7 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
+   <partial name="_Notifications" />
   @RenderBody()
   </div>
   <!-- /.content-wrapper -->
@@ -1414,6 +1410,52 @@
             });
         });
     </script>
+     <script type="text/javascript">
+        var currentlocation =location.href;
+        var header = document.getElementById("main-menu-navigation");
+          
+        var btns = document.querySelectorAll(".nav-link");
+        var trees = document.querySelectorAll(".nav-item has-treeview");
+       console.log(trees);
+        //console.log(currentlocation);
+        //console.log(header);
+        //console.log(btns.length);
+        //console.log(btns);
+        //console.log(btns[0].href);
+        //console.log(btns[0].parentNode);
+        for (let i = 0; i < btns.length; i++) {
+           
+             if(btns[i].href  === currentlocation) {
+              
+                    //var current = document.getElementsByClassName("active");
+                  
+                    //current[0].className = current[0].className.replace(" active", "");
+                //console.log(btns[0].parentNode.className);
+                btns[i].className ='nav-link active';
+                for(let f=0; f<trees.length; f++) 
+                {
+                    alert("ahmed");
+                    if (trees[f].className === 'nav-item has-treeview') {
+                         alert("ahmed");
+                         console.log(trees[i].className);
+                        trees[f].className = 'nav-item has-treeview menu-open';
+                     }
+                }
+               
+                //btns[i].parentNode.parentNode.className = 'nav nav-treeview menu-open';
+                //console.log(btns[i].closest('.nav-item has-treeview').className);
+                //console.log($(this).parent());
+
+                //$(this).parent().parent().addClass('menu-open');
+              
+                   
+              
+               
+            }
+           
+       }
+    </script>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
 

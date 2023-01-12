@@ -1,20 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Xml.Linq;
+﻿using System.ComponentModel.DataAnnotations;
+using System;
 
-#nullable disable
-
-namespace Domains
+namespace AlMohamyProject.Models
 {
-    public partial class TbMainConsulting
+    public class MainConsultingModel
     {
         public Guid MainConsultingId { get; set; }
 
-        [Required(ErrorMessage ="Please Enter MainConsultingTitle")]
+        [Required(ErrorMessage = "Please Enter MainConsultingTitle")]
         public string MainConsultingTitle { get; set; }
 
+
+
+        [Required(ErrorMessage = "Please Enter MainConsultingImage")]
         public string MainConsultingImage { get; set; }
+
+
+
+
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }
         public DateTime? CreatedDate { get; set; }

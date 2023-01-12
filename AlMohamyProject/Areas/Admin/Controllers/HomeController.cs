@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace AlMohamyProject.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize]
+    [Authorize(Roles = "Admin,الصفحة الرئيسية")]
     public class HomeController : Controller
     {
         public IActionResult Index()
