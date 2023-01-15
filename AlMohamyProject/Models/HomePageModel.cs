@@ -55,6 +55,19 @@ namespace AlMohamyProject.Models
 
         public IEnumerable<TbEvaluation> lstEvaluations { get; set; }
 
+        public IEnumerable<TbNotification> lstNotifications { get; set; }
+
+        public IEnumerable<TbOffer> lstOffers { get; set; }
+
+        public IEnumerable<TbPoliciesAndPrivacy> lstPoliciesAndPrivacy { get; set; }
+
+        public IEnumerable<TbPromocode> lstPromocodes { get; set; }
+
+        public IEnumerable<TbSetting> lstSettings { get; set; }
+
+
+        public IEnumerable<TbSubMainConsulting> lstSubMainConsultings { get; set; }
+
 
 
 

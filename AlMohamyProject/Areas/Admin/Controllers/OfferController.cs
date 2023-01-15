@@ -14,22 +14,22 @@ using Microsoft.AspNetCore.Authorization;
 namespace AlMohamyProject.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class NotificationController : Controller
+    public class OfferController : Controller
     {
-        NotificationService notificationService;
+        OfferService offerService;
         AlMohamyDbContext ctx;
-        public NotificationController(NotificationService NotificationService,MainConsultingService MainConsultingService, AlMohamyDbContext context)
+        public OfferController(OfferService OfferService,MainConsultingService MainConsultingService, AlMohamyDbContext context)
         {
-            notificationService = NotificationService;
+            offerService = OfferService;
             ctx = context;
 
         }
-        [Authorize(Roles = "Admin,الاشعارات")]
+        [Authorize(Roles = "Admin,العروض")]
         public IActionResult Index()
         {
 
             HomePageModel model = new HomePageModel();
-            model.lstNotifications = notificationService.getAll();
+            model.lstOffers = offerService.getAll();
 
             return View(model);
 
@@ -40,9 +40,9 @@ namespace AlMohamyProject.Areas.Admin.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Save(TbNotification ITEM, int id, List<IFormFile> files)
+        public async Task<IActionResult> Save(TbOffer ITEM, int id, List<IFormFile> files)
         {
-            if (ITEM.NotificationId == null)
+            if (ITEM.OfferId == null)
             {
 
 
@@ -66,14 +66,14 @@ namespace AlMohamyProject.Areas.Admin.Controllers
 
 
 
-                    var result = notificationService.Add(ITEM);
+                    var result = offerService.Add(ITEM);
                     if (result == true)
                     {
-                        TempData[SD.Success] = "Notification Profile successfully Created.";
+                        TempData[SD.Success] = "Offer Profile successfully Created.";
                     }
                     else
                     {
-                        TempData[SD.Error] = "Error in Notification Profile  Creating.";
+                        TempData[SD.Error] = "Error in Offer Profile  Creating.";
                     }
 
 
@@ -104,14 +104,14 @@ namespace AlMohamyProject.Areas.Admin.Controllers
 
 
 
-                    var result = notificationService.Edit(ITEM);
+                    var result = offerService.Edit(ITEM);
                     if (result == true)
                     {
-                        TempData[SD.Success] = "Notification Profile successfully Updated.";
+                        TempData[SD.Success] = "Offer Profile successfully Updated.";
                     }
                     else
                     {
-                        TempData[SD.Error] = "Error in Notification Profile  Updating.";
+                        TempData[SD.Error] = "Error in Offer Profile  Updating.";
                     }
 
                 }
@@ -121,33 +121,33 @@ namespace AlMohamyProject.Areas.Admin.Controllers
 
 
             HomePageModel model = new HomePageModel();
-            model.lstNotifications = notificationService.getAll();
+            model.lstOffers = offerService.getAll();
             return View("Index", model);
         }
 
 
 
 
-        [Authorize(Roles = "Admin,حذف الاشعارات")]
+        [Authorize(Roles = "Admin,حذف العروض")]
         public IActionResult Delete(Guid id)
         {
 
-            TbNotification oldItem = ctx.TbNotifications.Where(a => a.NotificationId == id).FirstOrDefault();
+            TbOffer oldItem = ctx.TbOffers.Where(a => a.OfferId == id).FirstOrDefault();
 
 
 
-            var result = notificationService.Delete(oldItem);
+            var result = offerService.Delete(oldItem);
             if (result == true)
             {
-                TempData[SD.Success] = "Notification Profile successfully Removed.";
+                TempData[SD.Success] = "Offer Profile successfully Removed.";
             }
             else
             {
-                TempData[SD.Error] = "Error in Notification Profile  Removing.";
+                TempData[SD.Error] = "Error in Offer Profile  Removing.";
             }
 
             HomePageModel model = new HomePageModel();
-            model.lstNotifications = notificationService.getAll();
+            model.lstOffers = offerService.getAll();
             return View("Index", model);
 
 
@@ -156,11 +156,11 @@ namespace AlMohamyProject.Areas.Admin.Controllers
 
 
 
-        [Authorize(Roles = "Admin,اضافة او تعديل الاشعارات")]
+        [Authorize(Roles = "Admin,اضافة او تعديل العروض")]
         public IActionResult Form(Guid? id)
         {
-            TbNotification oldItem = ctx.TbNotifications.Where(a => a.NotificationId == id).FirstOrDefault();
-            oldItem = ctx.TbNotifications.Where(a => a.NotificationId == id).FirstOrDefault();
+            TbOffer oldItem = ctx.TbOffers.Where(a => a.OfferId == id).FirstOrDefault();
+            oldItem = ctx.TbOffers.Where(a => a.OfferId == id).FirstOrDefault();
 
             return View(oldItem);
         }
