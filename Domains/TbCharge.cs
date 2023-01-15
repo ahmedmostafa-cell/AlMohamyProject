@@ -7,7 +7,7 @@ namespace Domains
 {
     public partial class TbCharge
     {
-        public Guid ChargeId { get; set; }
+        public Guid? ChargeId { get; set; }
         public string Id { get; set; }
         public string ChargeType { get; set; }
         public string ChargeValue { get; set; }

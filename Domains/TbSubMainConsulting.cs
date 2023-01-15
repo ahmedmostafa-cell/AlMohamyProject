@@ -7,7 +7,7 @@ namespace Domains
 {
     public partial class TbSubMainConsulting
     {
-        public Guid SubMainConsultingId { get; set; }
+        public Guid? SubMainConsultingId { get; set; }
         public string SubMainConsultingTitle { get; set; }
         public string SubMainConsultingDescription { get; set; }
         public string SubMainConsultingImage { get; set; }

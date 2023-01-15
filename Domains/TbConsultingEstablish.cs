@@ -7,7 +7,7 @@ namespace Domains
 {
     public partial class TbConsultingEstablish
     {
-        public Guid ConsultingId { get; set; }
+        public Guid? ConsultingId { get; set; }
         public string RequestNo { get; set; }
         public string RequestStatus { get; set; }
         public string RequestText { get; set; }

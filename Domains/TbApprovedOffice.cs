@@ -7,7 +7,7 @@ namespace Domains
 {
     public partial class TbApprovedOffice
     {
-        public Guid ApprovedOfficeId { get; set; }
+        public Guid? ApprovedOfficeId { get; set; }
         public string ApprovedOfficeName { get; set; }
         public string AreaName { get; set; }
         public string CityName { get; set; }

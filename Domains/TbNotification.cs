@@ -7,7 +7,7 @@ namespace Domains
 {
     public partial class TbNotification
     {
-        public Guid NotificationId { get; set; }
+        public Guid? NotificationId { get; set; }
         public string SenderId { get; set; }
         public string SenderName { get; set; }
         public string ToWhomId { get; set; }

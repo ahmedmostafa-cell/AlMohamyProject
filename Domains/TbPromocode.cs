@@ -7,7 +7,7 @@ namespace Domains
 { 
     public partial class TbPromocode
     {
-        public Guid PromocodeId { get; set; }
+        public Guid? PromocodeId { get; set; }
         public string PromocodeTitle { get; set; }
         public string PromocodeDiscountPercent { get; set; }
         public string CreatedBy { get; set; }

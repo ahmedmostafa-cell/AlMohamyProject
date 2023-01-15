@@ -7,7 +7,7 @@ namespace Domains
 {
     public partial class TbSetting
     {
-        public Guid SettingId { get; set; }
+        public Guid? SettingId { get; set; }
         public string ValueAddedTax { get; set; }
         public string AppProfitPercent { get; set; }
         public string OffersValidityDays { get; set; }

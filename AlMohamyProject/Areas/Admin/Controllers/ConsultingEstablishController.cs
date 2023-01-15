@@ -27,7 +27,7 @@ namespace AlMohamyProject.Areas.Admin.Controllers
 
         }
         [Authorize(Roles = "Admin,انشاء الاستشارة")]
-        public IActionResult Index(string Id)
+        public IActionResult Index()
         {
 
             HomePageModel model = new HomePageModel();
@@ -44,7 +44,7 @@ namespace AlMohamyProject.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Save(TbConsultingEstablish ITEM, int id, List<IFormFile> files)
         {
-            if (ITEM.ConsultingId == Guid.Parse("00000000-0000-0000-0000-000000000000"))
+            if (ITEM.ConsultingId == null)
             {
 
 

@@ -14,25 +14,22 @@ using Microsoft.AspNetCore.Authorization;
 namespace AlMohamyProject.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class ComplainsAndSuggestionController : Controller
+    public class EvaluationController : Controller
     {
-        ComplainsAndSuggestionsService complainsAndSuggestionsService;
-        MainConsultingService mainConsultingService;
+        EvaluationService evaluationService;
         AlMohamyDbContext ctx;
-        public ComplainsAndSuggestionController(ComplainsAndSuggestionsService ComplainsAndSuggestionsService,MainConsultingService MainConsultingService, AlMohamyDbContext context)
+        public EvaluationController(EvaluationService EvaluationService,MainConsultingService MainConsultingService, AlMohamyDbContext context)
         {
-           
-            mainConsultingService = MainConsultingService;
-            complainsAndSuggestionsService = ComplainsAndSuggestionsService;
+            evaluationService = EvaluationService;
             ctx = context;
 
         }
-        [Authorize(Roles = "Admin,الشكاوي و الاقتراحات")]
+        [Authorize(Roles = "Admin,التقييمات")]
         public IActionResult Index()
         {
 
             HomePageModel model = new HomePageModel();
-            model.lstComplainsAndSuggestions = complainsAndSuggestionsService.getAll();
+            model.lstEvaluations = evaluationService.getAll();
 
             return View(model);
 
@@ -43,9 +40,9 @@ namespace AlMohamyProject.Areas.Admin.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Save(TbComplainsAndSuggestion ITEM, int id, List<IFormFile> files)
+        public async Task<IActionResult> Save(TbEvaluation ITEM, int id, List<IFormFile> files)
         {
-            if (ITEM.ComplaintsAndSuggestionsId == null)
+            if (ITEM.EvaluationId == null)
             {
 
 
@@ -69,14 +66,14 @@ namespace AlMohamyProject.Areas.Admin.Controllers
 
 
 
-                    var result = complainsAndSuggestionsService.Add(ITEM);
+                    var result = evaluationService.Add(ITEM);
                     if (result == true)
                     {
-                        TempData[SD.Success] = "Complains And Suggestions Profile successfully Created.";
+                        TempData[SD.Success] = "Evaluation Profile successfully Created.";
                     }
                     else
                     {
-                        TempData[SD.Error] = "Error in Complains And Suggestions Profile  Creating.";
+                        TempData[SD.Error] = "Error in Evaluation Profile  Creating.";
                     }
 
 
@@ -107,14 +104,14 @@ namespace AlMohamyProject.Areas.Admin.Controllers
 
 
 
-                    var result = complainsAndSuggestionsService.Edit(ITEM);
+                    var result = evaluationService.Edit(ITEM);
                     if (result == true)
                     {
-                        TempData[SD.Success] = "Complains And Suggestions Profile successfully Updated.";
+                        TempData[SD.Success] = "Evaluation Profile successfully Updated.";
                     }
                     else
                     {
-                        TempData[SD.Error] = "Error in Complains And Suggestions Profile  Updating.";
+                        TempData[SD.Error] = "Error in Evaluation Profile  Updating.";
                     }
 
                 }
@@ -124,33 +121,33 @@ namespace AlMohamyProject.Areas.Admin.Controllers
 
 
             HomePageModel model = new HomePageModel();
-            model.lstComplainsAndSuggestions = complainsAndSuggestionsService.getAll();
+            model.lstEvaluations = evaluationService.getAll();
             return View("Index", model);
         }
 
 
 
 
-        [Authorize(Roles = "Admin,حذف الشكاوي و الاقتراحات")]
+        [Authorize(Roles = "Admin,حذف التقييمات")]
         public IActionResult Delete(Guid id)
         {
 
-            TbMainConsulting oldItem = ctx.TbMainConsultings.Where(a => a.MainConsultingId == id).FirstOrDefault();
+            TbEvaluation oldItem = ctx.TbEvaluations.Where(a => a.EvaluationId == id).FirstOrDefault();
 
 
 
-            var result = mainConsultingService.Delete(oldItem);
+            var result = evaluationService.Delete(oldItem);
             if (result == true)
             {
-                TempData[SD.Success] = "Complains And Suggestions Profile successfully Removed.";
+                TempData[SD.Success] = "Evaluation Profile successfully Removed.";
             }
             else
             {
-                TempData[SD.Error] = "Error in Complains And Suggestions Profile  Removing.";
+                TempData[SD.Error] = "Error in Evaluation Profile  Removing.";
             }
 
             HomePageModel model = new HomePageModel();
-            model.lstComplainsAndSuggestions = complainsAndSuggestionsService.getAll();
+            model.lstEvaluations = evaluationService.getAll();
             return View("Index", model);
 
 
@@ -159,11 +156,11 @@ namespace AlMohamyProject.Areas.Admin.Controllers
 
 
 
-        [Authorize(Roles = "Admin,اضافة او تعديل الشكاوي و الاقتراحات")]
+        [Authorize(Roles = "Admin,اضافة او تعديل التقييمات")]
         public IActionResult Form(Guid? id)
         {
-            TbComplainsAndSuggestion oldItem = ctx.TbComplainsAndSuggestions.Where(a => a.ComplaintsAndSuggestionsId == id).FirstOrDefault();
-            oldItem = ctx.TbComplainsAndSuggestions.Where(a => a.ComplaintsAndSuggestionsId == id).FirstOrDefault();
+            TbEvaluation oldItem = ctx.TbEvaluations.Where(a => a.EvaluationId == id).FirstOrDefault();
+            oldItem = ctx.TbEvaluations.Where(a => a.EvaluationId == id).FirstOrDefault();
 
             return View(oldItem);
         }

@@ -7,7 +7,7 @@ namespace Domains
 {
     public partial class TbPoliciesAndPrivacy
     {
-        public Guid PoliciesAndPrivacyId { get; set; }
+        public Guid? PoliciesAndPrivacyId { get; set; }
         public string PoliciesAndPrivacyTitle { get; set; }
         public string PoliciesAndPrivacyDescription { get; set; }
         public string PoliciesAndPrivacyForWhom { get; set; }

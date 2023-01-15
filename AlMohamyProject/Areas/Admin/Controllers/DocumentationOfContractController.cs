@@ -1,36 +1,36 @@
 ﻿using AlMohamyProject.Models;
 using BL;
+using Domains;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System;
 using Microsoft.AspNetCore.Authorization;
-using Domains;
-using System.Linq;
 
 namespace AlMohamyProject.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class MainConsultingController : Controller
+    public class DocumentationOfContractController : Controller
     {
-        MainConsultingService mainConsultingService;
+        DocumentationOfContractService documentationOfContractService;
         AlMohamyDbContext ctx;
-        public MainConsultingController(MainConsultingService MainConsultingService ,AlMohamyDbContext context)
+        public DocumentationOfContractController(DocumentationOfContractService DocumentationOfContractService,MainConsultingService MainConsultingService, AlMohamyDbContext context)
         {
-            mainConsultingService = MainConsultingService;
+            documentationOfContractService = DocumentationOfContractService;
             ctx = context;
-            
+
         }
-        [Authorize(Roles = "Admin,الاستشارات الرئيسية")]
+        [Authorize(Roles = "Admin,توثيق العقود")]
         public IActionResult Index()
         {
-           
+
             HomePageModel model = new HomePageModel();
-            model.lstMainConsultings = mainConsultingService.getAll();
-           
+            model.lstDocumentationOfContracts = documentationOfContractService.getAll();
+
             return View(model);
 
 
@@ -38,14 +38,14 @@ namespace AlMohamyProject.Areas.Admin.Controllers
 
 
 
-       
+
         [HttpPost]
-        public async Task<IActionResult> Save(TbMainConsulting ITEM, int id, List<IFormFile> files)
+        public async Task<IActionResult> Save(TbDocumentationOfContract ITEM, int id, List<IFormFile> files)
         {
-            if (ITEM.MainConsultingId == null)
+            if (ITEM.DocumentationOfContractId == null)
             {
 
-               
+
                 if (ModelState.IsValid)
                 {
                     foreach (var file in files)
@@ -58,7 +58,7 @@ namespace AlMohamyProject.Areas.Admin.Controllers
                             {
                                 await file.CopyToAsync(stream);
                             }
-                            ITEM.MainConsultingImage = ImageName;
+                            ITEM.DocumentationOfContractImage = ImageName;
                         }
                     }
 
@@ -66,24 +66,24 @@ namespace AlMohamyProject.Areas.Admin.Controllers
 
 
 
-                    var result = mainConsultingService.Add(ITEM);
+                    var result = documentationOfContractService.Add(ITEM);
                     if (result == true)
                     {
-                        TempData[SD.Success] = "Main Consulting Profile successfully Created.";
+                        TempData[SD.Success] = "Documentation Of Contract Profile successfully Created.";
                     }
                     else
                     {
-                        TempData[SD.Error] = "Error in Main Consulting Profile  Creating.";
+                        TempData[SD.Error] = "Error in Documentation Of Contract Profile  Creating.";
                     }
 
 
                 }
-              
+
 
             }
             else
             {
-                if (ModelState.IsValid) 
+                if (ModelState.IsValid)
                 {
                     foreach (var file in files)
                     {
@@ -95,7 +95,7 @@ namespace AlMohamyProject.Areas.Admin.Controllers
                             {
                                 await file.CopyToAsync(stream);
                             }
-                            ITEM.MainConsultingImage = ImageName;
+                            ITEM.DocumentationOfContractImage = ImageName;
                         }
                     }
 
@@ -104,54 +104,50 @@ namespace AlMohamyProject.Areas.Admin.Controllers
 
 
 
-                    var result = mainConsultingService.Edit(ITEM);
+                    var result = documentationOfContractService.Edit(ITEM);
                     if (result == true)
                     {
-                        TempData[SD.Success] = "Main Consulting Profile successfully Updated.";
+                        TempData[SD.Success] = "Documentation Of Contract Profile successfully Updated.";
                     }
                     else
                     {
-                        TempData[SD.Error] = "Error in Main Consulting Profile  Updating.";
+                        TempData[SD.Error] = "Error in Documentation Of Contract Profile  Updating.";
                     }
 
                 }
-
-
-                   
-
             }
 
 
 
 
             HomePageModel model = new HomePageModel();
-            model.lstMainConsultings = mainConsultingService.getAll();
+            model.lstDocumentationOfContracts = documentationOfContractService.getAll();
             return View("Index", model);
         }
 
 
 
 
-        [Authorize(Roles = "Admin,حذف الاستشارات الرئيسية")]
+        [Authorize(Roles = "Admin,حذف توثيق العقود")]
         public IActionResult Delete(Guid id)
         {
-           
-            TbMainConsulting oldItem = ctx.TbMainConsultings.Where(a => a.MainConsultingId == id).FirstOrDefault();
 
-           
+            TbDocumentationOfContract oldItem = ctx.TbDocumentationOfContracts.Where(a => a.DocumentationOfContractId == id).FirstOrDefault();
 
-            var result = mainConsultingService.Delete(oldItem);
+
+
+            var result = documentationOfContractService.Delete(oldItem);
             if (result == true)
             {
-                TempData[SD.Success] = "Main Consulting Profile successfully Removed.";
+                TempData[SD.Success] = "Documentation Of Contract Profile successfully Removed.";
             }
             else
             {
-                TempData[SD.Error] = "Error in Main Consulting Profile  Removing.";
+                TempData[SD.Error] = "Error in Documentation Of Contract Profile  Removing.";
             }
 
             HomePageModel model = new HomePageModel();
-            model.lstMainConsultings = mainConsultingService.getAll();
+            model.lstDocumentationOfContracts = documentationOfContractService.getAll();
             return View("Index", model);
 
 
@@ -160,12 +156,12 @@ namespace AlMohamyProject.Areas.Admin.Controllers
 
 
 
-        [Authorize(Roles = "Admin,اضافة او تعديل الاستشارات الرئيسية")]
+        [Authorize(Roles = "Admin,اضافة او تعديل توثيق العقود")]
         public IActionResult Form(Guid? id)
         {
-            TbMainConsulting oldItem = ctx.TbMainConsultings.Where(a => a.MainConsultingId == id).FirstOrDefault();
-            oldItem = ctx.TbMainConsultings.Where(a => a.MainConsultingId == id).FirstOrDefault();
-          
+            TbDocumentationOfContract oldItem = ctx.TbDocumentationOfContracts.Where(a => a.DocumentationOfContractId == id).FirstOrDefault();
+            oldItem = ctx.TbDocumentationOfContracts.Where(a => a.DocumentationOfContractId == id).FirstOrDefault();
+
             return View(oldItem);
         }
     }

@@ -9,7 +9,7 @@ namespace Domains
 {
     public partial class TbMainConsulting
     {
-        public Guid MainConsultingId { get; set; }
+        public Guid? MainConsultingId { get; set; }
 
         [Required(ErrorMessage ="Please Enter MainConsultingTitle")]
         public string MainConsultingTitle { get; set; }

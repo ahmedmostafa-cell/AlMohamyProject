@@ -51,6 +51,11 @@ namespace AlMohamyProject.Models
         public IEnumerable<TbConsultingType> lstConsultingTypes { get; set; }
 
 
+        public IEnumerable<TbDocumentationOfContract> lstDocumentationOfContracts { get; set; }
+
+        public IEnumerable<TbEvaluation> lstEvaluations { get; set; }
+
+
 
 
 

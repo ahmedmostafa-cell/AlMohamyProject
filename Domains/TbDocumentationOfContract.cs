@@ -7,7 +7,7 @@ namespace Domains
 {
     public partial class TbDocumentationOfContract
     {
-        public Guid DocumentationOfContractId { get; set; }
+        public Guid? DocumentationOfContractId { get; set; }
         public string DocumentationOfContractTilte { get; set; }
         public string DocumentationOfContractDescription { get; set; }
         public string DocumentationOfContractImage { get; set; }

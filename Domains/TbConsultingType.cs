@@ -7,7 +7,7 @@ namespace Domains
 {
     public partial class TbConsultingType
     {
-        public Guid ConsultingTypeId { get; set; }
+        public Guid? ConsultingTypeId { get; set; }
         public string ConsultingTypeTitle { get; set; }
         public string ConsultingTypeDescription { get; set; }
         public string CreatedBy { get; set; }

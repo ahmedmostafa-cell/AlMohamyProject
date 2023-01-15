@@ -7,7 +7,7 @@ namespace Domains
 {
     public partial class TbOffer
     {
-        public Guid OfferId { get; set; }
+        public Guid? OfferId { get; set; }
         public Guid? ConsultingId { get; set; }
         public string UserId { get; set; }
         public string UserName { get; set; }

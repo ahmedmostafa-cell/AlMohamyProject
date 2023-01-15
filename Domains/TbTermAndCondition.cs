@@ -7,7 +7,7 @@ namespace Domains
 {
     public partial class TbTermAndCondition
     {
-        public Guid TermsAndConditionsId { get; set; }
+        public Guid? TermsAndConditionsId { get; set; }
         public string TermsAndConditionsTitle { get; set; }
         public string TermsAndConditionsDescription { get; set; }
         public string TermsAndConditionsForWhom { get; set; }

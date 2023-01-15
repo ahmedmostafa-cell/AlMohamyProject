@@ -7,7 +7,7 @@ namespace Domains
 {
     public partial class TbEvaluation
     {
-        public Guid EvaluationId { get; set; }
+        public Guid? EvaluationId { get; set; }
         public string EvaluaterId { get; set; }
         public string ToBeEvaluatedId { get; set; }
         public string EvaluationText { get; set; }
