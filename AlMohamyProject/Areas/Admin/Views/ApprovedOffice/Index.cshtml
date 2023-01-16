@@ -4,12 +4,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>عرض استشارات</h1>
+                <h1>عرض المكاتب المعتمدة</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">استشارات</a></li>
-                    <li class="breadcrumb-item active">عرض استشارات</li>
+                    <li class="breadcrumb-item"><a href="#">المكاتب المعتمدة</a></li>
+                    <li class="breadcrumb-item active">عرض المكاتب المعتمدة</li>
                 </ol>
             </div>
         </div>
@@ -31,9 +31,11 @@
                     <table id="example1" class="table table-bordered table-striped ">
                         <thead>
                             <tr>
-                                <th>عنوان الاستشارة</th>
-                                <th>تفاصيل الاستشارة</th>
-                                <th>صورة الاستشارة</th>
+                                <th>اسم المكتب المعتمد</th>
+                                <th>اسم المنطقة</th>
+                                <th>اسم المدينة</th>
+                                <th>لوجو المكتب</th>
+                                <th>ملف الرخصة</th>
                                 <th>تعديل</th>
                                
                                 <th>حذف</th>
@@ -42,31 +44,37 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var item in Model.lstMainConsultings)
+                            @foreach (var item in Model.lstApprovedOffices)
                             {
 
                                 <tr>
-                                    <td>@item.MainConsultingTitle</td>
+                                    <td>@item.ApprovedOfficeName</td>
                                     <td>
-                                        @item.Notes
+                                        @item.AreaName
+                                    </td>
+                                    <td>
+                                        @item.CityName
                                     </td>
 
                                     <td style="width:10%">
                                        
-                                            <img style="max-width: 100%; " max-height: 100%;" src="@string.Format("/Uploads/{0}",item.MainConsultingImage)" alt="Img placeholder">
+                                            <img style="max-width: 100%; " max-height: 100%;" src="@string.Format("/Uploads/{0}",item.ApprovedOfficeLogo)" alt="Img placeholder">
 
                                            
                                           
                                        
                                        
                                     </td>
+                                    <td class="product-img">
+                                        <a href="@string.Format("/Uploads/{0}",item.ApprovedOfficeLicenseDoc)" class="btn btn-primary">Read Now</a>
+                                    </td>
                                     <td>
-                                        <a asp-area="Admin" asp-controller="MainConsulting" asp-action="Form" asp-route-id="@item.MainConsultingId" class="btn btn-info text-white" style="cursor:pointer">
+                                        <a asp-area="Admin" asp-controller="ApprovedOffice" asp-action="Form" asp-route-id="@item.ApprovedOfficeId" class="btn btn-info text-white" style="cursor:pointer">
                                             تعديل
                                         </a>
                                     </td>
                                     <td>
-                                        <a asp-area="Admin" asp-controller="MainConsulting" asp-action="Delete" asp-route-id="@item.MainConsultingId" class="btn btn-danger text-white" style="cursor:pointer">
+                                        <a asp-area="Admin" asp-controller="ApprovedOffice" asp-action="Delete" asp-route-id="@item.ApprovedOfficeId" class="btn btn-danger text-white" style="cursor:pointer">
                                             حذف
                                         </a>
                                     </td>
@@ -80,10 +88,13 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>عنوان السليدر</th>
-                                <th>تفاصيل السليدر</th>
-                                <th>صورة السليدر</th>
+                                <th>اسم المكتب المعتمد</th>
+                                <th>اسم المنطقة</th>
+                                <th>اسم المدينة</th>
+                                <th>لوجو المكتب</th>
+                                <th>ملف الرخصة</th>
                                 <th>تعديل</th>
+
                                 <th>حذف</th>
                             </tr>
                         </tfoot>

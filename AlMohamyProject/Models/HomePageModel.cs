@@ -68,6 +68,8 @@ namespace AlMohamyProject.Models
 
         public IEnumerable<TbSubMainConsulting> lstSubMainConsultings { get; set; }
 
+        public IEnumerable<TbTermAndCondition> lstTermAndConditions { get; set; }
+
 
 
 

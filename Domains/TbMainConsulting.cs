@@ -11,7 +11,7 @@ namespace Domains
     {
         public Guid? MainConsultingId { get; set; }
 
-        [Required(ErrorMessage ="Please Enter MainConsultingTitle")]
+        [Required(ErrorMessage ="من فضلك ادخل اسم الاستشارة الرئيسية")]
         public string MainConsultingTitle { get; set; }
 
         public string MainConsultingImage { get; set; }
@@ -19,7 +19,7 @@ namespace Domains
         public string UpdatedBy { get; set; }
         public DateTime? CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
-        [Required(ErrorMessage = "Please Enter MainConsultingDescription")]
+        [Required(ErrorMessage = "من فضلك ادخل وصف الاستشارة الرئيسية")]
         public string Notes { get; set; }
         public int? CurrentState { get; set; }
         public string Consulting30MinutesCost { get; set; }

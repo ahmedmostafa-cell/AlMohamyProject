@@ -4,12 +4,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>عرض استشارات</h1>
+                <h1>عرض عن التطبيق</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">استشارات</a></li>
-                    <li class="breadcrumb-item active">عرض استشارات</li>
+                    <li class="breadcrumb-item"><a href="#">عن التطبيق</a></li>
+                    <li class="breadcrumb-item active">عرض عن التطبيق</li>
                 </ol>
             </div>
         </div>
@@ -31,9 +31,9 @@
                     <table id="example1" class="table table-bordered table-striped ">
                         <thead>
                             <tr>
-                                <th>عنوان الاستشارة</th>
-                                <th>تفاصيل الاستشارة</th>
-                                <th>صورة الاستشارة</th>
+                                <th>عنوان عن التطبيق</th>
+                                <th>تفاصيل عن التطبيق</th>
+                                <th>موجهة لمن</th>
                                 <th>تعديل</th>
                                
                                 <th>حذف</th>
@@ -42,31 +42,34 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var item in Model.lstMainConsultings)
+                            @foreach (var item in Model.lstAboutApp)
                             {
 
                                 <tr>
-                                    <td>@item.MainConsultingTitle</td>
+                                    <td>@item.AboutAppTitle</td>
                                     <td>
-                                        @item.Notes
+                                        @item.AboutAppDescription
+                                    </td>
+                                    <td>
+                                        @item.AboutAppForWhom
                                     </td>
 
-                                    <td style="width:10%">
+                                   @* <td style="width:10%">
                                        
-                                            <img style="max-width: 100%; " max-height: 100%;" src="@string.Format("/Uploads/{0}",item.MainConsultingImage)" alt="Img placeholder">
+                                            <img style="max-width: 100%; " max-height: 100%;" src="@string.Format("/Uploads/{0}",item.AboutAppForWhom)" alt="Img placeholder">
 
                                            
                                           
                                        
                                        
-                                    </td>
+                                    </td>*@
                                     <td>
-                                        <a asp-area="Admin" asp-controller="MainConsulting" asp-action="Form" asp-route-id="@item.MainConsultingId" class="btn btn-info text-white" style="cursor:pointer">
+                                        <a asp-area="Admin" asp-controller="AboutApp" asp-action="Form" asp-route-id="@item.AboutAppId" class="btn btn-info text-white" style="cursor:pointer">
                                             تعديل
                                         </a>
                                     </td>
                                     <td>
-                                        <a asp-area="Admin" asp-controller="MainConsulting" asp-action="Delete" asp-route-id="@item.MainConsultingId" class="btn btn-danger text-white" style="cursor:pointer">
+                                        <a asp-area="Admin" asp-controller="AboutApp" asp-action="Delete" asp-route-id="@item.AboutAppId" class="btn btn-danger text-white" style="cursor:pointer">
                                             حذف
                                         </a>
                                     </td>
@@ -80,10 +83,11 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>عنوان السليدر</th>
-                                <th>تفاصيل السليدر</th>
-                                <th>صورة السليدر</th>
+                                <th>عنوان عن التطبيق</th>
+                                <th>تفاصيل عن التطبيق</th>
+                                <th>موجهة لمن</th>
                                 <th>تعديل</th>
+
                                 <th>حذف</th>
                             </tr>
                         </tfoot>

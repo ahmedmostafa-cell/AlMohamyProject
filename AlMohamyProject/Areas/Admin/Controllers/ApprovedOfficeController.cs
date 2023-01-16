@@ -42,7 +42,7 @@ namespace AlMohamyProject.Areas.Admin.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Save(TbApprovedOffice ITEM, int id, List<IFormFile> files)
+        public async Task<IActionResult> Save(TbApprovedOffice ITEM, int id, List<IFormFile> files, List<IFormFile> filess)
         {
             if (ITEM.ApprovedOfficeId == null)
             {
@@ -61,6 +61,20 @@ namespace AlMohamyProject.Areas.Admin.Controllers
                                 await file.CopyToAsync(stream);
                             }
                             ITEM.ApprovedOfficeLogo = ImageName;
+                        }
+                    }
+
+                    foreach (var file in filess)
+                    {
+                        if (file.Length > 0)
+                        {
+                            string ImageName = Guid.NewGuid().ToString() + ".pdf";
+                            var filePaths = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\Uploads", ImageName);
+                            using (var stream = System.IO.File.Create(filePaths))
+                            {
+                                await file.CopyToAsync(stream);
+                            }
+                            ITEM.ApprovedOfficeLicenseDoc = ImageName;
                         }
                     }
 
@@ -103,7 +117,19 @@ namespace AlMohamyProject.Areas.Admin.Controllers
 
 
 
-
+                    foreach (var file in filess)
+                    {
+                        if (file.Length > 0)
+                        {
+                            string ImageName = Guid.NewGuid().ToString() + ".pdf";
+                            var filePaths = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\Uploads", ImageName);
+                            using (var stream = System.IO.File.Create(filePaths))
+                            {
+                                await file.CopyToAsync(stream);
+                            }
+                            ITEM.ApprovedOfficeLicenseDoc = ImageName;
+                        }
+                    }
 
 
                     var result = approvedOfficeService.Edit(ITEM);
