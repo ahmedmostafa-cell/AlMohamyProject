@@ -46,10 +46,11 @@ namespace AlMohamyProject.Areas.Admin.Controllers
         {
             if (ITEM.ApprovedOfficeId == null)
             {
-
+               
 
                 if (ModelState.IsValid)
                 {
+
                     foreach (var file in files)
                     {
                         if (file.Length > 0)
@@ -77,6 +78,7 @@ namespace AlMohamyProject.Areas.Admin.Controllers
                             ITEM.ApprovedOfficeLicenseDoc = ImageName;
                         }
                     }
+
 
 
 
