@@ -66,6 +66,7 @@ namespace AlMohamyProject
             services.AddScoped<SettingService, ClsSetting>();
             services.AddScoped<SubMainConsultingService, ClsSubMainConsulting>();
             services.AddScoped<TermAndConditionService, ClsTermAndCondition>();
+            services.AddScoped<ComplainsAndSuggestionsService, ClsComplainsAndSuggestions>();
             services.AddControllersWithViews();
             services.AddMvc().AddSessionStateTempDataProvider();
             services.AddSession();

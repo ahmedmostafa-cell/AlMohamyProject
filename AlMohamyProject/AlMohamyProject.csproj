@@ -24,20 +24,4 @@
     <ProjectReference Include="..\EmailServices\EmailServices.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Areas\Admin\Views\Charge\" />
-    <Folder Include="Areas\Admin\Views\ComplainsAndSuggestion\" />
-    <Folder Include="Areas\Admin\Views\ConsultingEstablish\" />
-    <Folder Include="Areas\Admin\Views\ConsultingType\" />
-    <Folder Include="Areas\Admin\Views\DocumentationOfContract\" />
-    <Folder Include="Areas\Admin\Views\Evaluation\" />
-    <Folder Include="Areas\Admin\Views\TermAndCondition\" />
-    <Folder Include="Areas\Admin\Views\SubMainConsulting\" />
-    <Folder Include="Areas\Admin\Views\Setting\" />
-    <Folder Include="Areas\Admin\Views\Promocode\" />
-    <Folder Include="Areas\Admin\Views\PoliciesAndPrivacy\" />
-    <Folder Include="Areas\Admin\Views\Offer\" />
-    <Folder Include="Areas\Admin\Views\Notification\" />
-  </ItemGroup>
-
 </Project>

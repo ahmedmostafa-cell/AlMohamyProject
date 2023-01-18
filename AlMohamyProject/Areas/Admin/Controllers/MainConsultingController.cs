@@ -126,7 +126,7 @@ namespace AlMohamyProject.Areas.Admin.Controllers
 
             HomePageModel model = new HomePageModel();
             model.lstMainConsultings = mainConsultingService.getAll();
-            return View("Index", model);
+            return RedirectToAction("Index", model);
         }
 
 

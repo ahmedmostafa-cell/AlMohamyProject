@@ -10,18 +10,21 @@ using System.Linq;
 using System.Threading.Tasks;
 using System;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace AlMohamyProject.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class SubMainConsultingController : Controller
     {
+        MainConsultingService mainConsultingService;
         SubMainConsultingService subMainConsultingService;
         AlMohamyDbContext ctx;
         public SubMainConsultingController(SubMainConsultingService SubMainConsultingService,MainConsultingService MainConsultingService, AlMohamyDbContext context)
         {
             subMainConsultingService = SubMainConsultingService;
             ctx = context;
+            mainConsultingService = MainConsultingService;
 
         }
         [Authorize(Roles = "Admin,الاستشارات الفرعية")]
@@ -30,7 +33,7 @@ namespace AlMohamyProject.Areas.Admin.Controllers
 
             HomePageModel model = new HomePageModel();
             model.lstSubMainConsultings = subMainConsultingService.getAll();
-
+            model.lstMainConsultings = mainConsultingService.getAll();
             return View(model);
 
 
@@ -122,6 +125,7 @@ namespace AlMohamyProject.Areas.Admin.Controllers
 
             HomePageModel model = new HomePageModel();
             model.lstSubMainConsultings = subMainConsultingService.getAll();
+            model.lstMainConsultings = mainConsultingService.getAll();
             return View("Index", model);
         }
 
@@ -148,6 +152,7 @@ namespace AlMohamyProject.Areas.Admin.Controllers
 
             HomePageModel model = new HomePageModel();
             model.lstSubMainConsultings = subMainConsultingService.getAll();
+            model.lstMainConsultings = mainConsultingService.getAll();
             return View("Index", model);
 
 
@@ -161,7 +166,7 @@ namespace AlMohamyProject.Areas.Admin.Controllers
         {
             TbSubMainConsulting oldItem = ctx.TbSubMainConsultings.Where(a => a.SubMainConsultingId == id).FirstOrDefault();
             oldItem = ctx.TbSubMainConsultings.Where(a => a.SubMainConsultingId == id).FirstOrDefault();
-
+            ViewBag.cities = mainConsultingService.getAll();
             return View(oldItem);
         }
     }

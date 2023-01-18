@@ -1,0 +1,105 @@
+﻿@model AlMohamyProject.Models.HomePageModel
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>عرض استشارات الفرعية</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">استشارات الفرعية</a></li>
+                    <li class="breadcrumb-item active">عرض استشارات الفرعية</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+
+
+            <div class="card">
+                <div class="card-header">
+                   
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table id="example1" class="table table-bordered table-striped ">
+                        <thead>
+                            <tr>
+                                <th>عنوان استشارات الفرعية</th>
+                                <th>تفاصيل استشارات الفرعية</th>
+                                <th>اسم قسم استشارة رئيسية</th>
+                                <th>صورة استشارات الفرعية</th>
+                                <th>تعديل</th>
+                               
+                                <th>حذف</th>
+                              
+                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.lstSubMainConsultings)
+                            {
+
+                                <tr>
+                                    <td>@item.SubMainConsultingTitle</td>
+                                    <td>
+                                        @item.SubMainConsultingDescription
+                                    </td>
+                                    <td>
+                                        @Model.lstMainConsultings.Where(a=> a.MainConsultingId == item.MainConsultingId).FirstOrDefault().MainConsultingTitle
+                                    </td>
+
+                                    <td style="width:10%">
+                                       
+                                            <img style="max-width: 100%; " max-height: 100%;" src="@string.Format("/Uploads/{0}",item.SubMainConsultingImage)" alt="Img placeholder">
+
+                                           
+                                          
+                                       
+                                       
+                                    </td>
+                                    <td>
+                                        <a asp-area="Admin" asp-controller="SubMainConsulting" asp-action="Form" asp-route-id="@item.SubMainConsultingId" class="btn btn-info text-white" style="cursor:pointer">
+                                            تعديل
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a asp-area="Admin" asp-controller="SubMainConsulting" asp-action="Delete" asp-route-id="@item.SubMainConsultingId" class="btn btn-danger text-white" style="cursor:pointer">
+                                            حذف
+                                        </a>
+                                    </td>
+                                  
+                                   
+                                </tr>
+
+                            }
+
+
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>عنوان استشارات الفرعية</th>
+                                <th>تفاصيل استشارات الفرعية</th>
+                                <th>صورة استشارات الفرعية</th>
+                                <th>تعديل</th>
+
+                                <th>حذف</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->

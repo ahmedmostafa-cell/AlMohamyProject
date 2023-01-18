@@ -1,0 +1,242 @@
+﻿@model AlMohamyProject.Models.HomePageModel
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>عرض انشاء الاستشارات</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">انشاء  الاستشارات</a></li>
+                    <li class="breadcrumb-item active">عرض انشاء الاستشارات</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+
+
+            <div class="card">
+                <div class="card-header">
+                   
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table id="example1" class="table table-bordered table-striped ">
+                        <thead>
+                            <tr>
+                                <th>رقم الطلب</th>
+                                <th>نوع الطلب</th>
+                                <th>نص الاستشارة  </th>
+                                <th> الملف المرفق  </th>
+                                <th> التسجيل الصوتي  </th>
+                                <th>نوع الاستشارة  </th>
+                                <th>الاسم الاول لصاحب الاستشارة  </th>
+                                <th>اسم العائلة لصاحب الاستشارة  </th>
+                                <th>صورة صاحب الاستشارة  </th>
+                                <th>ايميل صاحب الاستشارة  </th>
+                                <th>اسم المحامي  </th>
+                                 <th>ايميل المحامي  </th>
+                                <th>صورة المحامي  </th>
+                              
+                                <th>نوع الاستشارة  </th>
+                                 <th>اسم الاستشارة الرئيسية  </th>
+                                <th>صورة الاستشارة الرئيسية  </th>
+                               <th>اسم الاستشارة الفرعية  </th>
+                                <th>صورة الاستشارة الفرعية  </th>
+                                <th>مدة الاستشارة   </th>
+                                <th>تكلفة الاستشارة المرتبطة بمدتها   </th>
+                                <th>قيمة الخصم ف حالة بروموكود   </th>
+                                <th>تكلفة الاستشارة النهائية   </th>
+                                <th>المدفوع   </th>
+                                <th>نوع التحويل   </th>
+                                <th>تاريخ ووقت الاستشارة   </th>
+                                <th>الوقت المتبقي  حتي الاستشارة تبدا    </th>
+                                  <th>اسم المنطقة    </th>
+                                <th>اسم المدينة    </th>
+                                <th>هل تم طلب التفويض     </th>
+                                <th>قيمة التفويض المرسلة من المستخدم     </th>
+                                <th>قيمة التفويض المرسلة من المحامي     </th>
+                                <th>قيمة التفويض المتفق عليها        </th>
+                                <th>الرد عل  التفويض  من المستخدم        </th>
+                                <th>سبب رفض    التفويض           </th>
+                                  <th>عدد العروض </th>
+                                <th>التاريخ </th>
+                               
+                              
+                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.lstConsultingEstablishs)
+                            {
+
+                                <tr>
+                                    <td>@item.RequestNo</td>
+                                    <td>
+                                        @item.RequestStatus
+                                    </td>
+                                    <td>
+                                        @item.RequestText
+                                    </td>
+                                    <td class="product-img">
+                                        <a href="@string.Format("/Uploads/{0}",item.RequestDocument)" class="btn btn-primary">Read Now</a>
+                                    </td>
+                                    <td>
+                                        <audio controls autobuffer="autobuffer" title="Ahmed">
+                                            <source src='@string.Format("/Uploads/{0}",item.RequestAudio)' />
+                                        </audio>-->
+                                    </td>
+                                    <td>
+                                        @item.RequestType
+                                    </td>
+                                      <td>
+                                        @item.UserFirstName
+                                    </td>
+                                    <td>
+                                        @item.UserFamilyName
+                                    </td>
+                                     <td>
+                                        @item.UserImage
+                                    </td>
+                                    <td>
+                                        @item.UserEmail
+                                    </td>
+                                       <td>
+                                        @item.LawyerName
+                                    </td>
+                                    <td>
+                                        @item.LawyerImage
+                                    </td>
+                                     <td>
+                                        @item.ConsultingType
+                                    </td>
+                                    <td>
+                                        @item.MainConsultingName
+                                    </td>
+                                    <td>
+                                        @item.SubConsultingName
+                                    </td>
+                                    <td>
+                                        @item.ConsultingPeriod
+                                    </td>
+                                    <td>
+                                        @item.ConsultingPeriodCost
+                                    </td>
+                                    <td>
+                                        @item.PromocodeDiscountValue
+                                    </td>
+                                    <td>
+                                        @item.TheTotal
+                                    </td>
+                                    <td>
+                                        @item.TheConsultingPaidValue
+                                    </td>
+                                    <td>
+                                        @item.TransactionType
+                                    </td>
+                                    <td>
+                                        @item.ConsultingDateAndTime
+                                    </td>
+                                    <td>
+                                        @item.TimeRemainingForConsultingToStart
+                                    </td>
+                                     <td>
+                                        @item.AreaName
+                                    </td>
+                                    <td>
+                                        @item.CityName
+                                    </td>
+                                    <td>
+                                        @item.IsDelegationAsked
+                                    </td>
+                                    <td>
+                                        @item.DelegationValueSentFromUser
+                                    </td>
+                                    <td>
+                                        @item.DelegationValueSentFromLawyer
+                                    </td>
+                                    <td>
+                                        @item.DelegationValueApproved
+                                    </td>
+                                    <td>
+                                        @item.DelegationReplyBack
+                                    </td>
+                                    <td>
+                                        @item.DelegationRejectionCause
+                                    </td>
+                                     <td>
+                                        @item.NoOfOffers
+                                    </td>
+                                    <td>
+                                        @item.CreatedDate
+                                    </td>
+                                 
+                                  
+                                  
+                                   
+                                </tr>
+
+                            }
+
+
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>رقم الطلب</th>
+                                <th>نوع الطلب</th>
+                                <th>نص الاستشارة  </th>
+                                <th> الملف المرفق  </th>
+                                <th> التسجيل الصوتي  </th>
+                                <th>نوع الاستشارة  </th>
+                                <th>الاسم الاول لصاحب الاستشارة  </th>
+                                <th>اسم العائلة لصاحب الاستشارة  </th>
+                                <th>صورة صاحب الاستشارة  </th>
+                                <th>ايميل صاحب الاستشارة  </th>
+                                <th>اسم المحامي  </th>
+                                <th>ايميل المحامي  </th>
+                                <th>صورة المحامي  </th>
+
+                                <th>نوع الاستشارة  </th>
+                                <th>اسم الاستشارة الرئيسية  </th>
+                                <th>صورة الاستشارة الرئيسية  </th>
+                                <th>اسم الاستشارة الفرعية  </th>
+                                <th>صورة الاستشارة الفرعية  </th>
+                                <th>مدة الاستشارة   </th>
+                                <th>تكلفة الاستشارة المرتبطة بمدتها   </th>
+                                <th>قيمة الخصم ف حالة بروموكود   </th>
+                                <th>تكلفة الاستشارة النهائية   </th>
+                                <th>المدفوع   </th>
+                                <th>نوع التحويل   </th>
+                                <th>تاريخ ووقت الاستشارة   </th>
+                                <th>الوقت المتبقي  حتي الاستشارة تبدا    </th>
+                                <th>اسم المنطقة    </th>
+                                <th>اسم المدينة    </th>
+                                <th>هل تم طلب التفويض     </th>
+                                <th>قيمة التفويض المرسلة من المستخدم     </th>
+                                <th>قيمة التفويض المرسلة من المحامي     </th>
+                                <th>قيمة التفويض المتفق عليها        </th>
+                                <th>الرد عل  التفويض  من المستخدم        </th>
+                                <th>سبب رفض    التفويض           </th>
+                                <th>عدد العروض </th>
+                                <th>التاريخ </th>
+
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->

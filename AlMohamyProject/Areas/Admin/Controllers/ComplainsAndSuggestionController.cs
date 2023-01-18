@@ -135,11 +135,11 @@ namespace AlMohamyProject.Areas.Admin.Controllers
         public IActionResult Delete(Guid id)
         {
 
-            TbMainConsulting oldItem = ctx.TbMainConsultings.Where(a => a.MainConsultingId == id).FirstOrDefault();
+            TbComplainsAndSuggestion oldItem = ctx.TbComplainsAndSuggestions.Where(a => a.ComplaintsAndSuggestionsId == id).FirstOrDefault();
 
 
 
-            var result = mainConsultingService.Delete(oldItem);
+            var result = complainsAndSuggestionsService.Delete(oldItem);
             if (result == true)
             {
                 TempData[SD.Success] = "Complains And Suggestions Profile successfully Removed.";
