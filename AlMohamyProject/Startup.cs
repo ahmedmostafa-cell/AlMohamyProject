@@ -15,6 +15,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EmailService;
 using Microsoft.AspNetCore.Authorization;
+using AlMohamyProject.Controllers;
 
 namespace AlMohamyProject
 {
@@ -67,21 +68,25 @@ namespace AlMohamyProject
             services.AddScoped<SubMainConsultingService, ClsSubMainConsulting>();
             services.AddScoped<TermAndConditionService, ClsTermAndCondition>();
             services.AddScoped<ComplainsAndSuggestionsService, ClsComplainsAndSuggestions>();
+            services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddControllersWithViews();
             services.AddMvc().AddSessionStateTempDataProvider();
             services.AddSession();
             services.AddDbContext<AlMohamyDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
-                options.Password.RequiredLength = 5;
-                options.Password.RequireLowercase = true;
+                options.Password.RequiredLength = 1;
+                options.Password.RequireLowercase = false;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
-                options.User.RequireUniqueEmail = true;
+                options.User.RequireUniqueEmail = false;
+                options.SignIn.RequireConfirmedEmail = false;
+                options.User.AllowedUserNameCharacters = "";
                 options.Password.RequireDigit = false;
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromSeconds(30);
                 options.Lockout.MaxFailedAccessAttempts = 5;
-                //options.SignIn.RequireConfirmedEmail = true;
+
+                options.User.AllowedUserNameCharacters = string.Empty;
 
             }).AddErrorDescriber<CustomIdentityErrorDescriber>().AddEntityFrameworkStores<AlMohamyDbContext>().AddDefaultTokenProviders();    ///.AddDefaultUI();
 
